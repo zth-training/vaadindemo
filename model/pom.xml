@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>vaadindemo</artifactId>
+		<groupId>hu.zerotohero</groupId>
+		<version>1.1</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>model</artifactId>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.avaje.ebeanorm</groupId>
+				<artifactId>avaje-ebeanorm-mavenenhancer</artifactId>
+				<version>${ebean.version}</version>
+				<executions>
+					<execution>
+						<id>main</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>enhance</goal>
+						</goals>
+						<configuration>
+							<packages>
+								hu.zerotohero.entities.**
+							</packages>
+							<transformArgs>debug=9</transformArgs>
+							<classSource>${project.build.outputDirectory}</classSource>
+							<classDestination>${project.build.outputDirectory}</classDestination>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+
+</project>
